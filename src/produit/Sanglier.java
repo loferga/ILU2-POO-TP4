@@ -8,7 +8,7 @@ public class Sanglier extends Produit {
 	private Gaulois chasseur;
 	
 	public Sanglier(int poids, Gaulois chasseur) {
-		super("sanglier", Unite.GRAMME);
+		super("sanglier", Unite.KILOGRAMME);
 		this.poids = poids;
 		this.chasseur = chasseur;
 	}
@@ -20,8 +20,7 @@ public class Sanglier extends Produit {
 	
 	@Override
 	public double calculerPrix(double prix) {
-		// TODO ???????
-		return poids/1000.0 * prix;
+		return prix * poids/super.unite.getFactor();
 	}
 	
 }

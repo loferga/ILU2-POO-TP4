@@ -84,9 +84,8 @@ public class Scenario {
 
 		DepenseMarchand[] depense = village.acheterProduit("sanglier", 3);
 
-		for (int i = 0; i < depense.length && depense[i] != null; i++) {
+		for (int i = 0; i < depense.length && depense[i] != null; i++)
 			System.out.println(depense[i]);
-		}
 
 		System.out.println(village);
 
