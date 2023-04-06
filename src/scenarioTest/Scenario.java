@@ -1,12 +1,15 @@
 package scenarioTest;
 
+import java.util.Arrays;
+
 import personnages.Gaulois;
 import produit.Poisson;
 import produit.Produit;
 import produit.Sanglier;
+import villagegaulois.Etal;
+import villagegaulois.IEtal;
 import villagegaulois.IVillage;
 import villagegauloisold.DepenseMarchand;
-import villagegaulois.Etal;
 
 public class Scenario {
 
@@ -14,16 +17,42 @@ public class Scenario {
 		
 		IVillage village = new IVillage() {
 			
+			private IEtal[] marche = new IEtal[20];
+			private int nbEtal;
+			
 			@Override
 			public <P extends Produit> boolean installerVendeur(villagegaulois.Etal<P> etal, Gaulois vendeur, P[] produit, int prix) {
 				etal.installerVendeur(vendeur, produit, prix);
+				marche[nbEtal++] = etal;
 				return true;
 			}
 			
 			@Override
 			public DepenseMarchand[] acheterProduit(String produit, int quantiteSouhaitee) {
-				// TODO Auto-generated method stub
-				return null;
+				int qttSouhaitee = quantiteSouhaitee;
+				DepenseMarchand[] dm = new DepenseMarchand[marche.length];
+				int nbDepenses = 0;
+				int nbVendu;
+				for (int i = 0; i<nbEtal && qttSouhaitee > 0; i++) {
+					IEtal etal = marche[i];
+					nbVendu = etal.contientProduit(produit, qttSouhaitee);
+					if (nbVendu > 0) {
+						dm[nbDepenses++] = new DepenseMarchand(etal.getVendeur(), nbVendu, produit, etal.acheterProduit(nbVendu));
+						qttSouhaitee -= nbVendu;
+					}
+				}
+				return Arrays.copyOfRange(dm, 0, nbDepenses);
+			}
+			
+			@Override
+			public String toString() {
+				StringBuilder str = new StringBuilder();
+				for (int i = 0; i<nbEtal; i++) {
+					IEtal etal = marche[i];
+					str.append(etal.etatEtal());
+					str.append('\n');
+				}
+				return str.toString();
 			}
 			
 		};

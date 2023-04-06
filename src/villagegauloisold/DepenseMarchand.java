@@ -20,7 +20,7 @@ public class DepenseMarchand {
 	}
 
 	public String toString() {
-		return "Achat de " + qteVendue + " " + produit + " sur l'Ã©tal du marchand " + marchand.getNom()
+		return "Achat de " + qteVendue + " " + produit + " sur l'étal du marchand " + marchand.getNom()
 				+ " pour un total de " + sommeDepensee + " sous.\n";
 	}
 
