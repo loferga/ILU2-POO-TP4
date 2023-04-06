@@ -2,7 +2,6 @@ package villagegaulois;
 
 import personnages.Gaulois;
 import produit.Produit;
-import villagegauloisold.DepenseMarchand;
 
 public interface IVillage {
 	

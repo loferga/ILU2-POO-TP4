@@ -1,4 +1,4 @@
-package villagegauloisold;
+package villagegaulois;
 
 import personnages.Gaulois;
 

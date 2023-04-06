@@ -1,15 +1,13 @@
 package scenarioTest;
 
-import java.util.Arrays;
-
 import personnages.Gaulois;
 import produit.Poisson;
 import produit.Produit;
 import produit.Sanglier;
+import villagegaulois.DepenseMarchand;
 import villagegaulois.Etal;
 import villagegaulois.IEtal;
 import villagegaulois.IVillage;
-import villagegauloisold.DepenseMarchand;
 
 public class Scenario {
 
@@ -41,7 +39,7 @@ public class Scenario {
 						qttSouhaitee -= nbVendu;
 					}
 				}
-				return Arrays.copyOfRange(dm, 0, nbDepenses);
+				return dm;
 			}
 			
 			@Override
